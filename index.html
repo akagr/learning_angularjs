@@ -1,0 +1,45 @@
+<html ng-app="myApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
+    <script src="controllers.js"></script>
+  </head>
+  <body>
+    <div ng-controller="CartController">
+      <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <input ng-model="item.quantity">
+        <span>{{item.price | currency}}</span>
+        <span>{{item.price * item.quantity | currency}}</span>
+      </div>
+      <div>Total: {{totalCart() | currency}}</div>
+      <div>Discount: {{bill.discount | currency}}</div>
+      <div>Subtotal: {{subtotal() | currency}}</div>
+    </div>
+   <form ng-submit="requestFunding()" ng-controller="StartUpController">
+      Starting: <input ng-model="funding.startingEstimate">
+      Recommendation: {{funding.needed}}
+      <button>Fund my startup!</button>
+      <button ng-click="reset()">Reset</button>
+    </form>
+    <ul ng-controller="StudentsController">
+      <li ng-repeat="student in students">
+        <a href='/student/view/{{student.id}}'>{{student.name}}</a>
+      </li>
+    </ul>
+    <table ng-controller='AlbumController'>
+      <tr ng-repeat='track in album'>
+        <td>{{$index + 1}}</td>
+        <td>{{track.name}}</td>
+        <td>{{track.duration}}</td>
+      </tr>
+    </table>
+    <div ng-controller='DeathrayMenuController'>
+      <button ng-click='toggleMenu()'>Toggle Menu</button>
+      <ul ng-show='menuState'>
+        <li ng-click='stun()'>Stun</li>
+        <li ng-click='disintegrate()'>Disintegrate</li>
+        <li ng-click='erase()'>Erase from history</li>
+      </ul>
+    <div/>
+  </body>
+</html>
